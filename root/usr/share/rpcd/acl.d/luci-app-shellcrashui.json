@@ -1,0 +1,70 @@
+{
+	"luci-app-shellcrashui": {
+		"description": "授予 ShellCrash 控制、内核参数调整、面板部署与配置编辑权限",
+		"read": {
+			"file": {
+				"/usr/libexec/luci-shellcrashui/ctl.sh": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh status": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh logs": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh ping": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh kernel-get": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh version": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh *": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/zashboard.sh": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/zashboard.sh status": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/zashboard.sh job": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/zashboard.sh *": [ "exec" ],
+
+				"/etc/ShellCrash/configs/ShellCrash.cfg": [ "read" ],
+				"/etc/ShellCrash/configs/ShellCrash.cfg.bak": [ "read" ],
+				"/tmp/ShellCrash/configs/ShellCrash.cfg": [ "read" ],
+				"/tmp/ShellCrash/configs/ShellCrash.cfg.bak": [ "read" ]
+			},
+			"uci": [ "shellcrash" ]
+		},
+		"write": {
+			"file": {
+				"/usr/libexec/luci-shellcrashui/ctl.sh": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh start": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh stop": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh restart": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh reload": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh enable": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh disable": [ "exec" ],
+
+				"/usr/libexec/luci-shellcrashui/ctl.sh mode-rule": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh mode-global": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh mode-direct": [ "exec" ],
+
+				"/usr/libexec/luci-shellcrashui/ctl.sh log-silent": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh log-error": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh log-warning": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh log-info": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh log-debug": [ "exec" ],
+
+				"/usr/libexec/luci-shellcrashui/ctl.sh allow-lan-on": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh allow-lan-off": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh ipv6-on": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh ipv6-off": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh tcp-concurrent-on": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh tcp-concurrent-off": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/ctl.sh *": [ "exec" ],
+
+				"/usr/libexec/luci-shellcrashui/zashboard.sh": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/zashboard.sh install luci": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/zashboard.sh install core": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/zashboard.sh uninstall luci": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/zashboard.sh uninstall core": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/zashboard.sh cancel": [ "exec" ],
+				"/usr/libexec/luci-shellcrashui/zashboard.sh *": [ "exec" ],
+
+				"/etc/ShellCrash/configs/ShellCrash.cfg": [ "read", "write" ],
+				"/etc/ShellCrash/configs/ShellCrash.cfg.bak": [ "read", "write" ],
+				"/tmp/ShellCrash/configs/ShellCrash.cfg": [ "read", "write" ],
+				"/tmp/ShellCrash/configs/ShellCrash.cfg.bak": [ "read", "write" ],
+				"/etc/config/shellcrash": [ "read", "write" ]
+			},
+			"uci": [ "shellcrash" ]
+		}
+	}
+}

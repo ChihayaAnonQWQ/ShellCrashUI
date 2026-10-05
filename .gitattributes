@@ -1,0 +1,19 @@
+# 换行符统一成 LF。
+#
+# 这条不是洁癖：shell 脚本一旦被 Windows 端转成 CRLF，在路由器的 ash 上会
+# 直接报错（`\r` 会被当成参数的一部分，例如 `head -3` 变成 `head -3\r`）。
+* text=auto eol=lf
+
+*.sh      text eol=lf
+*.js      text eol=lf
+*.json    text eol=lf
+*.py      text eol=lf
+*.md      text eol=lf
+Makefile  text eol=lf
+
+# 归档与图片按二进制处理，不做任何转换
+*.apk     binary
+*.ipk     binary
+*.gz      binary
+*.png     binary
+*.jpg     binary

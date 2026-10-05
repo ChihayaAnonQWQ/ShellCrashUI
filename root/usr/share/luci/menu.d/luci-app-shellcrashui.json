@@ -1,0 +1,67 @@
+{
+	"admin/services/shellcrashui": {
+		"title": "ShellCrashUI",
+		"order": 30,
+		"action": {
+			"type": "firstchild"
+		},
+		"depends": {
+			"acl": [ "luci-app-shellcrashui" ]
+		}
+	},
+	"admin/services/shellcrashui/control": {
+		"title": "运行控制",
+		"order": 10,
+		"action": {
+			"type": "view",
+			"path": "shellcrashui/main"
+		},
+		"depends": {
+			"acl": [ "luci-app-shellcrashui" ]
+		}
+	},
+	"admin/services/shellcrashui/log": {
+		"title": "运行日志",
+		"order": 20,
+		"action": {
+			"type": "view",
+			"path": "shellcrashui/log"
+		},
+		"depends": {
+			"acl": [ "luci-app-shellcrashui" ]
+		}
+	},
+	"admin/services/shellcrashui/general": {
+		"title": "基础设置",
+		"order": 30,
+		"action": {
+			"type": "view",
+			"path": "shellcrashui/general"
+		},
+		"depends": {
+			"acl": [ "luci-app-shellcrashui" ]
+		}
+	},
+	"admin/services/shellcrashui/zashboard": {
+		"title": "Zashboard 面板",
+		"order": 40,
+		"action": {
+			"type": "view",
+			"path": "shellcrashui/zashboard"
+		},
+		"depends": {
+			"acl": [ "luci-app-shellcrashui" ]
+		}
+	},
+	"admin/services/shellcrashui/settings": {
+		"title": "内核与 ShellCrash 设置",
+		"order": 50,
+		"action": {
+			"type": "view",
+			"path": "shellcrashui/settings"
+		},
+		"depends": {
+			"acl": [ "luci-app-shellcrashui" ]
+		}
+	}
+}

@@ -1,0 +1,35 @@
+#!/bin/sh
+# luci-app-shellcrashui - 首次安装初始化
+#
+# 该脚本由 postinst 立即执行一次，然后由 OpenWrt 的 uci-defaults 机制接管并删除。
+
+[ -x /usr/libexec/luci-shellcrashui/ctl.sh ] && chmod 0755 /usr/libexec/luci-shellcrashui/ctl.sh
+[ -x /usr/libexec/luci-shellcrashui/zashboard.sh ] && chmod 0755 /usr/libexec/luci-shellcrashui/zashboard.sh
+
+mkdir -p /tmp/luci-shellcrashui
+
+# 确保配置段存在（用户可能手工删过 /etc/config/shellcrash）
+if command -v uci >/dev/null 2>&1; then
+	uci -q get shellcrash.main >/dev/null 2>&1 || {
+		uci -q set shellcrash.main=shellcrash
+		uci -q set shellcrash.main.enabled='1'
+		uci -q set shellcrash.main.panel_mode='auto'
+		uci -q set shellcrash.main.panel_query='1'
+		uci -q set shellcrash.main.zashboard_version='latest'
+	}
+
+	# 补齐新版本新增的选项：升级上来的老配置里没有这些键，
+	# 不补的话前端表单会显示成空，用户以为坏了
+	uci -q get shellcrash.main.ping_targets >/dev/null 2>&1 || \
+		uci -q set shellcrash.main.ping_targets='百度|https://www.baidu.com/ 谷歌|https://www.google.com/generate_204 GitHub|https://github.com/ YouTube|https://www.youtube.com/'
+	uci -q get shellcrash.main.panel_protocol >/dev/null 2>&1 || \
+		uci -q set shellcrash.main.panel_protocol='auto'
+
+	uci -q commit shellcrash
+fi
+
+# 清理 LuCI 缓存，保证新菜单与新 ACL 立刻生效
+rm -f /tmp/luci-indexcache 2>/dev/null
+rm -rf /tmp/luci-modulecache 2>/dev/null
+
+exit 0

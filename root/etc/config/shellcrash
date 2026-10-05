@@ -1,0 +1,36 @@
+config shellcrash 'main'
+	option enabled '1'
+
+	# 留空表示自动检测（/etc/ShellCrash、/tmp/ShellCrash、/usr/bin/crash 等）
+	option crashdir ''
+
+	# 留空表示自动检测：先读内核运行配置的 external-controller / secret，
+	# 再读 ShellCrash 自身配置文件；仅在检测不到时才需要手工填写
+	option api_port ''
+	option mixed_port ''
+	option secret ''
+
+	# 面板模式：auto 自动判断 / core 内核 external-ui / local LuCI 站点 / remote 在线站点 / custom 自定义
+	option panel_mode 'auto'
+	option panel_url ''
+	option remote_url 'https://board.zash.run.place/'
+
+	# 跳转面板时是否带上 hostname / port / secret 参数，实现免登录直连
+	option panel_query '1'
+	# 填充的协议：auto 跟随后端探测到的内核 API 协议，也可强制 http / https
+	option panel_protocol 'auto'
+	option panel_query_extra ''
+
+	# GitHub 加速前缀，多个用空格分隔；留空使用内置镜像列表
+	option mirror ''
+
+	# Zashboard 版本：latest 或具体 tag，例如 v1.4.0
+	option zashboard_version 'latest'
+
+	# 状态刷新间隔（秒）与日志显示行数
+	option poll_interval '5'
+	option log_lines '200'
+
+	# 延迟测试目标：名称|URL，多个用空格分隔
+	# 测试经内核混合端口发出，因此反映的是规则分流后的真实可达性
+	option ping_targets '百度|https://www.baidu.com/ 谷歌|https://www.google.com/generate_204 GitHub|https://github.com/ YouTube|https://www.youtube.com/'
